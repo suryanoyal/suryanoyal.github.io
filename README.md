@@ -1,2 +1,2 @@
-[# suryanoyal.live](https://suryanoyal.live)https://suryanoyal.live
+[suryanoyal.live](https://suryanoyal.live)
 My Resume
