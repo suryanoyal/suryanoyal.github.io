@@ -1,2 +1,2 @@
-# suryanoyal.github.io
+# suryanoyal.live
 My Resume
