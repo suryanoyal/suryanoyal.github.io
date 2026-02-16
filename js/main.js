@@ -10,7 +10,7 @@ document.querySelectorAll(".tab").forEach(tab => {
     // Remove active state from tabs
     document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
     
-    // Fade out current content
+    // Fade out current content with slide animation
     if (activeContent) {
       activeContent.classList.add("fade-out");
       setTimeout(() => {
@@ -18,9 +18,39 @@ document.querySelectorAll(".tab").forEach(tab => {
       }, 300);
     }
     
-    // Add active state to new tab and fade in new content
+    // Add active state to new tab and slide in new content
     tab.classList.add("active");
     newContent.classList.add("active");
+    
+    // Trigger category-specific animations
+    setTimeout(() => {
+      const tabId = newContent.id;
+      let animationType = "slideInUp";
+      let duration = 0.6;
+      let staggerDelay = 0.05;
+      
+      // Different animations for different tabs
+      if (tabId === "design") {
+        animationType = "expandIn";
+        duration = 0.7;
+        staggerDelay = 0.06;
+      } else if (tabId === "reels") {
+        animationType = "rotateScaleIn";
+        duration = 0.6;
+        staggerDelay = 0.04;
+      } else if (tabId === "videos") {
+        animationType = "slideInUp";
+        duration = 0.8;
+        staggerDelay = 0.1;
+      }
+      
+      const gridItems = newContent.querySelectorAll(".post, .folder, .reel-item");
+      gridItems.forEach((item, index) => {
+        item.style.animation = "none";
+        item.offsetHeight; // Trigger reflow
+        item.style.animation = `${animationType} ${duration}s cubic-bezier(0.34, 1.56, 0.64, 1) ${index * staggerDelay}s forwards`;
+      });
+    }, 50);
   };
 });
 
@@ -72,6 +102,13 @@ function closeOverlay() {
 // --- REELS FOLDER LOGIC (WITH AUDIO) ---
 
 const folderData = {
+  // NEW CATEGORY (FIRST)
+  new_category: [
+    { src: 'https://ik.imagekit.io/2gmny0aig/Portfolio/assets/reels/Go%20kite/Trade%20Visa%202026?updatedAt=1771251629508', link: 'https://www.instagram.com/p/DUvJb1VkY3Y/', label: 'Valentines day' },
+    { src: 'https://ik.imagekit.io/2gmny0aig/Portfolio/assets/reels/Go%20kite/Valentines%20day%202026?updatedAt=1771251520941/', link: 'https://www.instagram.com/p/DUtXXe4kjTz/', label: 'Family Visa 2026' }
+  ],
+  
+  // EXISTING CATEGORIES
   brand: [
     { src: 'https://ik.imagekit.io/2gmny0aig/Portfolio/assets/reels/chef/Senanguni-chamanthi.mp4', link: 'https://www.instagram.com/p/DSALDvVCWUM/', label: 'Chennanguni Chammanthi' },
     { src: 'https://ik.imagekit.io/2gmny0aig/Portfolio/assets/reels/chef/Masala%20chakli.mp4', link: 'https://www.instagram.com/p/DSPhzuQiQl0/', label: 'Masala chakli' },
@@ -190,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Load default category
-    loadReels('brand');
+    // Load default category (UPDATED TO NEW CATEGORY)
+    loadReels('new_category');
   }
 });

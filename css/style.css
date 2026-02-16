@@ -92,6 +92,7 @@ body {
   border-radius: 14px;
   overflow: hidden;
   cursor: pointer;
+  opacity: 0;
 }
 
 /* ================= GRAPHIC DESIGN (Square) ================= */
@@ -139,6 +140,61 @@ body {
   }
 }
 
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes rotateScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) rotateY(-10deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+  }
+}
+
+@keyframes expandIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .tab-content {
   display: none;
   opacity: 0;
@@ -146,11 +202,11 @@ body {
 
 .tab-content.active {
   display: grid;
-  animation: fadeIn 0.5s ease-in-out forwards;
+  animation: slideInUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 .tab-content.fade-out {
-  animation: fadeOut 0.3s ease-in-out forwards;
+  animation: slideOutDown 0.3s ease-in-out forwards;
 }
 
 /* ================= OVERLAY (For Images) ================= */
@@ -216,6 +272,15 @@ body {
 
 /* ================= REELS FOLDER SYSTEM (NEW) ================= */
 
+@keyframes travelFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
 .folder-grid {
   display: flex;
   flex-wrap: wrap;
@@ -237,6 +302,7 @@ body {
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 2px solid transparent;
+  animation: travelFloat 3s ease-in-out infinite;
 }
 
 .folder img {
@@ -263,9 +329,18 @@ body {
   letter-spacing: 0.5px;
 }
 
+.folder:nth-child(1) { animation-delay: 0s; }
+.folder:nth-child(2) { animation-delay: 0.1s; }
+.folder:nth-child(3) { animation-delay: 0.2s; }
+.folder:nth-child(4) { animation-delay: 0.3s; }
+.folder:nth-child(5) { animation-delay: 0.4s; }
+.folder:nth-child(6) { animation-delay: 0.5s; }
+.folder:nth-child(7) { animation-delay: 0.6s; }
+
 .folder:hover {
-  transform: translateY(-8px);
+  transform: translateY(-12px) scale(1.05);
   box-shadow: 0 12px 24px rgba(0,0,0,0.5);
+  animation: none;
 }
 
 .folder.active {
