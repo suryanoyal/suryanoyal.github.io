@@ -782,6 +782,38 @@ button {
   border-color: transparent;
 }
 
+.reel-card__mute-btn {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 36px;
+  height: 36px;
+  background: rgba(5, 5, 16, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  z-index: 10;
+  transition: transform var(--duration-fast) ease,
+              background var(--duration-fast) ease,
+              border-color var(--duration-fast) ease;
+}
+
+.reel-card__mute-btn:hover {
+  transform: scale(1.1);
+  background: var(--gradient-hero);
+  border-color: transparent;
+}
+
+.reel-card__mute-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
 
 /* ─── VIDEOS SECTION ────────────────────────────────────── */
 .videos-section {
