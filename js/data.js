@@ -38,43 +38,59 @@ const PORTFOLIO = {
       icon: '✦',
       items: [
         { name: 'Brand Identity', level: 95 },
-        { name: 'Visual Design', level: 92 },
-        { name: 'UI/UX Design', level: 85 },
+        { name: 'Visual Branding', level: 94 },
+        { name: 'Creative Direction', level: 93 },
         { name: 'Typography', level: 90 },
-        { name: 'Print Design', level: 88 }
+        { name: 'Graphic Design', level: 92 },
+        { name: 'Visual Storytelling', level: 95 },
+        { name: 'UGC Strategy', level: 88 },
+        { name: 'Content Design', level: 91 },
+        { name: 'Brand Voice', level: 89 }
       ]
     },
     {
       category: 'Motion',
       icon: '◈',
       items: [
-        { name: 'Video Editing', level: 93 },
+        { name: 'Video Editing', level: 96 },
         { name: 'Motion Graphics', level: 88 },
         { name: 'Reels Production', level: 95 },
         { name: 'Color Grading', level: 85 },
-        { name: 'Sound Design', level: 78 }
+        { name: 'Sound Design', level: 78 },
+        { name: 'Retention-focused Pacing', level: 92 },
+        { name: 'Storytelling & Script Writing', level: 94 },
+        { name: 'Short-form Video Strategy', level: 93 }
       ]
     },
     {
       category: 'Strategy',
       icon: '◇',
       items: [
-        { name: 'Social Media', level: 94 },
-        { name: 'Content Strategy', level: 90 },
-        { name: 'Brand Strategy', level: 88 },
-        { name: 'Campaign Design', level: 86 },
-        { name: 'Audience Growth', level: 82 }
+        { name: 'Social Media Strategy', level: 96 },
+        { name: 'Instagram & YouTube Growth', level: 95 },
+        { name: 'Viral Content Creation', level: 94 },
+        { name: 'Campaign Management', level: 91 },
+        { name: 'Performance Marketing', level: 88 },
+        { name: 'Conversion Optimization', level: 87 },
+        { name: 'A/B Testing & Insights', level: 90 },
+        { name: 'Audience Research & Segmentation', level: 89 },
+        { name: 'Digital Marketing', level: 92 }
       ]
     },
     {
       category: 'Tools',
       icon: '⬡',
       items: [
+        { name: 'Adobe Premiere Pro', level: 95 },
+        { name: 'Adobe After Effects', level: 85 },
         { name: 'Adobe Photoshop', level: 96 },
         { name: 'Adobe Illustrator', level: 92 },
-        { name: 'Premiere Pro', level: 93 },
-        { name: 'After Effects', level: 85 },
-        { name: 'Figma', level: 88 }
+        { name: 'Figma', level: 88 },
+        { name: 'Meta Business Suite', level: 90 },
+        { name: 'Instagram Insights', level: 92 },
+        { name: 'YouTube Studio', level: 89 },
+        { name: 'CapCut', level: 94 },
+        { name: 'Canva', level: 90 }
       ]
     }
   ],
