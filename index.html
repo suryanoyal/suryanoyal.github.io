@@ -38,7 +38,9 @@
     <a href="#hero" class="nav__logo hover-target">NOYAL SURYA</a>
     <ul class="nav__links">
       <li><a href="#hero" class="nav__link active hover-target">Home</a></li>
-      <li><a href="#work" class="nav__link hover-target">Work</a></li>
+      <li><a href="#design" class="nav__link hover-target">Design</a></li>
+      <li><a href="#reels" class="nav__link hover-target">Reels</a></li>
+      <li><a href="#videos" class="nav__link hover-target">Videos</a></li>
       <li><a href="#about" class="nav__link hover-target">About</a></li>
       <li><a href="#skills" class="nav__link hover-target">Skills</a></li>
       <li><a href="#contact" class="nav__link hover-target">Contact</a></li>
@@ -53,7 +55,9 @@
   <!-- Mobile Dropdown Navigation -->
   <div class="mobile-nav" id="mobile-nav">
     <a href="#hero" class="hover-target">Home</a>
-    <a href="#work" class="hover-target">Work</a>
+    <a href="#design" class="hover-target">Design</a>
+    <a href="#reels" class="hover-target">Reels</a>
+    <a href="#videos" class="hover-target">Videos</a>
     <a href="#about" class="hover-target">About</a>
     <a href="#skills" class="hover-target">Skills</a>
     <a href="#contact" class="hover-target">Contact</a>
@@ -81,49 +85,53 @@
     </div>
 
     <!-- Breathing Scroll Indicator -->
-    <div class="hero__scroll">
-      <span>Scroll to explore</span>
-      <div class="hero__scroll-line"></div>
+    <div class="hero__scroll-wrapper">
+      <div class="hero__scroll">
+        <span>Scroll to explore</span>
+        <div class="hero__scroll-line"></div>
+      </div>
     </div>
   </header>
 
   <div class="section-divider"></div>
 
-  <!-- Portfolio Showcase Section -->
-  <section class="portfolio" id="work">
-    <div class="section__label">Showcase</div>
-    <h2 class="section__title">Selected Projects</h2>
-    <p class="section__subtitle">A curated presentation of motion campaigns, visual storytelling, and strategic brand identity projects.</p>
+  <!-- Graphic Design Section -->
+  <section class="portfolio reveal" id="design">
+    <div class="section__label">01 / Design</div>
+    <h2 class="section__title">Brand & Graphic Design</h2>
+    <p class="section__subtitle">A curated presentation of visual stories, promotional campaigns, and brand identities.</p>
 
-    <!-- Filters / Tab System -->
-    <div class="portfolio__filters">
-      <button class="filter-btn active hover-target" data-tab="design">Graphic Design</button>
-      <button class="filter-btn hover-target" data-tab="reels">Reels Production</button>
-      <button class="filter-btn hover-target" data-tab="videos">Full Video Edits</button>
+    <div class="design-grid" id="design-grid">
+      <!-- Rendered Dynamically -->
     </div>
+  </section>
 
-    <!-- Graphic Design Grid -->
-    <div class="design-section active" id="design-section">
-      <div class="design-grid" id="design-grid">
-        <!-- Rendered Dynamically -->
-      </div>
+  <div class="section-divider"></div>
+
+  <!-- Reels Production Section -->
+  <section class="portfolio reels-wrapper reveal" id="reels">
+    <div class="section__label">02 / Motion</div>
+    <h2 class="section__title">Reels Production</h2>
+    <p class="section__subtitle">Fast-paced, high-retention vertical videos optimized for modern audience engagement.</p>
+
+    <div class="reel-folders" id="reel-folders">
+      <!-- Rendered Dynamically -->
     </div>
-
-    <!-- Reels Category Folders + Grid -->
-    <div class="reels-section" id="reels-section">
-      <div class="reel-folders" id="reel-folders">
-        <!-- Rendered Dynamically -->
-      </div>
-      <div class="reel-grid" id="reel-grid">
-        <!-- Rendered Dynamically -->
-      </div>
+    <div class="reel-grid" id="reel-grid">
+      <!-- Rendered Dynamically -->
     </div>
+  </section>
 
-    <!-- Full Video Showcases -->
-    <div class="videos-section" id="videos-section">
-      <div class="video-showcase" id="video-showcase">
-        <!-- Rendered Dynamically -->
-      </div>
+  <div class="section-divider"></div>
+
+  <!-- Full Video Edits Section -->
+  <section class="portfolio videos-wrapper reveal" id="videos">
+    <div class="section__label">03 / Cinema</div>
+    <h2 class="section__title">Full Video Edits</h2>
+    <p class="section__subtitle">Cinematic video summaries, promotional edits, and narrative pacing.</p>
+
+    <div class="video-showcase" id="video-showcase">
+      <!-- Rendered Dynamically -->
     </div>
   </section>
 

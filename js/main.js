@@ -19,7 +19,7 @@ function initApp() {
   // ─── INTERACTIVE SYSTEMS ──────────────────────────────────
   initCustomCursor();
   initNavigation();
-  initTabSystem();
+  initScrollSpy();
   initLightbox();
   initHoverPlayVideos();
 
@@ -305,12 +305,18 @@ function renderContactLinks() {
 function initCustomCursor() {
   if (!window.matchMedia('(pointer: fine)').matches) return;
 
-  const dot = document.createElement('div');
-  const ring = document.createElement('div');
-  dot.className = 'cursor-dot';
-  ring.className = 'cursor-ring';
-  document.body.appendChild(dot);
-  document.body.appendChild(ring);
+  // Select existing HTML cursor elements to avoid duplication
+  let dot = document.querySelector('.cursor-dot');
+  let ring = document.querySelector('.cursor-ring');
+  
+  if (!dot || !ring) {
+    dot = document.createElement('div');
+    ring = document.createElement('div');
+    dot.className = 'cursor-dot';
+    ring.className = 'cursor-ring';
+    document.body.appendChild(dot);
+    document.body.appendChild(ring);
+  }
 
   let mouse = { x: 0, y: 0 };
   let dotPos = { x: 0, y: 0 };
@@ -339,13 +345,52 @@ function initCustomCursor() {
 
   // Hover states
   document.addEventListener('mouseover', e => {
-    if (e.target.closest('.hover-target') || e.target.tagName === 'A' || e.target.tagName === 'BUTTON') {
+    const isInteractive = e.target.closest('a') || e.target.closest('button') || e.target.tagName === 'A' || e.target.tagName === 'BUTTON';
+
+    if (isInteractive) {
+      ring.classList.remove('has-text');
+      ring.removeAttribute('data-text');
+      dot.classList.remove('hide');
+      ring.classList.add('hovering');
+      return;
+    }
+
+    const designCard = e.target.closest('.design-card');
+    const reelCard = e.target.closest('.reel-card');
+    const videoCard = e.target.closest('.video-card');
+
+    if (designCard) {
+      ring.classList.add('has-text');
+      ring.setAttribute('data-text', 'VIEW ✦');
+      dot.classList.add('hide');
+    } else if (reelCard) {
+      ring.classList.add('has-text');
+      ring.setAttribute('data-text', 'PLAY 🔊');
+      dot.classList.add('hide');
+    } else if (videoCard) {
+      ring.classList.add('has-text');
+      ring.setAttribute('data-text', 'WATCH 🎬');
+      dot.classList.add('hide');
+    } else if (e.target.closest('.hover-target')) {
       ring.classList.add('hovering');
     }
   });
 
   document.addEventListener('mouseout', e => {
-    if (e.target.closest('.hover-target') || e.target.tagName === 'A' || e.target.tagName === 'BUTTON') {
+    const isInteractive = e.target.closest('a') || e.target.closest('button') || e.target.tagName === 'A' || e.target.tagName === 'BUTTON';
+    const designCard = e.target.closest('.design-card');
+    const reelCard = e.target.closest('.reel-card');
+    const videoCard = e.target.closest('.video-card');
+
+    if (isInteractive) {
+      ring.classList.remove('hovering');
+    }
+
+    if (designCard || reelCard || videoCard) {
+      ring.classList.remove('has-text');
+      ring.removeAttribute('data-text');
+      dot.classList.remove('hide');
+    } else if (e.target.closest('.hover-target')) {
       ring.classList.remove('hovering');
     }
   });
@@ -382,34 +427,38 @@ function initNavigation() {
   }
 }
 
-function initTabSystem() {
-  const buttons = document.querySelectorAll('.filter-btn');
-  const sections = {
-    design: document.getElementById('design-section'),
-    reels: document.getElementById('reels-section'),
-    videos: document.getElementById('videos-section')
+function initScrollSpy() {
+  const sections = document.querySelectorAll('section, header');
+  const navLinks = document.querySelectorAll('.nav__link, .mobile-nav a');
+
+  const options = {
+    root: null,
+    rootMargin: '-30% 0px -60% 0px',
+    threshold: 0
   };
 
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        if (!id) return;
 
-      const target = btn.dataset.tab;
-      
-      // Hide all sub-sections
-      Object.values(sections).forEach(sec => {
-        if (sec) sec.classList.remove('active');
-      });
-
-      // Show target sub-section
-      if (sections[target]) {
-        sections[target].classList.add('active');
-        
-        // Refresh ScrollTrigger so calculations remain accurate
-        ScrollTrigger.refresh();
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href === `#${id}`) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
       }
     });
+  }, options);
+
+  sections.forEach(section => {
+    if (section.getAttribute('id')) {
+      observer.observe(section);
+    }
   });
 }
 

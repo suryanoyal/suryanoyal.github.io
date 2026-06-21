@@ -136,16 +136,50 @@ button {
   border-radius: 50%;
   pointer-events: none;
   z-index: 10000;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #fff;
+  white-space: nowrap;
   transition: width 0.3s var(--ease-out-expo),
               height 0.3s var(--ease-out-expo),
-              border-color 0.3s ease;
-  transform: translate(-50%, -50%);
+              border-color 0.3s ease,
+              background-color 0.3s ease;
+}
+
+.cursor-ring::after {
+  content: attr(data-text);
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
 .cursor-ring.hovering {
   width: 60px;
   height: 60px;
   border-color: var(--accent-magenta);
+}
+
+.cursor-ring.has-text {
+  width: 75px;
+  height: 75px;
+  background: rgba(5, 5, 16, 0.8);
+  border-color: var(--accent-cyan);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: 0 0 24px rgba(0, 212, 255, 0.15);
+}
+
+.cursor-ring.has-text::after {
+  opacity: 1;
+}
+
+.cursor-dot.hide {
+  transform: translate(-50%, -50%) scale(0) !important;
 }
 
 @media (pointer: coarse) {
@@ -332,24 +366,34 @@ button {
 
 /* ─── HERO SECTION ──────────────────────────────────────── */
 .hero {
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 650px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 120px 40px 80px;
+  padding: 80px 40px 100px;
   position: relative;
   z-index: 1;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    min-height: 100vh;
+    padding: 100px 20px 60px;
+  }
 }
 
 .hero__avatar {
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid rgba(255, 255, 255, 0.1);
-  margin-bottom: 32px;
+  margin-bottom: 20px;
   box-shadow: 0 0 60px rgba(0, 212, 255, 0.2);
 }
 
@@ -359,17 +403,17 @@ button {
   color: var(--accent-cyan);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .hero__headline {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
   font-weight: 800;
-  line-height: 1.08;
+  line-height: 1.1;
   letter-spacing: -0.04em;
-  max-width: 900px;
-  margin-bottom: 24px;
+  max-width: 850px;
+  margin-bottom: 12px;
 }
 
 .hero__headline .gradient-text {
@@ -380,19 +424,19 @@ button {
 }
 
 .hero__sub {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   color: var(--text-secondary);
-  max-width: 600px;
-  margin-bottom: 48px;
-  line-height: 1.8;
+  max-width: 580px;
+  margin-bottom: 20px;
+  line-height: 1.6;
 }
 
 .hero__roles {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
   justify-content: center;
-  margin-bottom: 48px;
+  margin-bottom: 24px;
 }
 
 .hero__role {
@@ -475,8 +519,15 @@ button {
   transform: translateY(-2px);
 }
 
+.hero__scroll-wrapper {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
 .hero__scroll {
-  margin-top: 64px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -488,8 +539,8 @@ button {
   animation: float 3s ease-in-out infinite;
 }
 
-@media (max-height: 750px) or (max-width: 768px) {
-  .hero__scroll {
+@media (max-height: 650px) or (max-width: 768px) {
+  .hero__scroll-wrapper {
     display: none !important;
   }
 }
@@ -552,12 +603,8 @@ button {
 
 
 /* ─── DESIGN SECTION ────────────────────────────────────── */
-.design-section {
-  display: none;
-}
-
-.design-section.active {
-  display: block;
+#design {
+  position: relative;
 }
 
 
@@ -653,12 +700,27 @@ button {
 
 
 /* ─── REELS SECTION ─────────────────────────────────────── */
-.reels-section {
-  display: none;
+#reels {
+  position: relative;
+  background: radial-gradient(circle at 80% 20%, rgba(123, 45, 255, 0.05), transparent 50%),
+              radial-gradient(circle at 20% 80%, rgba(255, 0, 110, 0.04), transparent 50%);
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  padding: 80px 40px;
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.6);
+  margin-top: 40px;
+  margin-bottom: 40px;
+  transition: border-color var(--duration-normal) ease;
 }
 
-.reels-section.active {
-  display: block;
+#reels:hover {
+  border-color: rgba(123, 45, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  #reels {
+    padding: 40px 20px;
+  }
 }
 
 .reel-folders {
@@ -816,12 +878,27 @@ button {
 
 
 /* ─── VIDEOS SECTION ────────────────────────────────────── */
-.videos-section {
-  display: none;
+#videos {
+  position: relative;
+  background: radial-gradient(circle at 30% 30%, rgba(0, 212, 255, 0.04), transparent 50%),
+              radial-gradient(circle at 70% 70%, rgba(255, 183, 3, 0.03), transparent 50%);
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  padding: 80px 40px;
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.6);
+  margin-top: 40px;
+  margin-bottom: 40px;
+  transition: border-color var(--duration-normal) ease;
 }
 
-.videos-section.active {
-  display: block;
+#videos:hover {
+  border-color: rgba(0, 212, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  #videos {
+    padding: 40px 20px;
+  }
 }
 
 .video-showcase {
