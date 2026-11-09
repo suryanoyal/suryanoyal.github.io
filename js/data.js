@@ -211,14 +211,14 @@ const PORTFOLIO = {
     },
     {
       id: 'd17',
-      title: 'PEC Hacks 2024 – National Hackathon',
-      description: 'Clean, high-information poster for 36-hour national hackathon. Minimal white layout with soft gradient accents. Strong emphasis on typography and structured content with central QR code.',
+      title: 'PEC Hacks 2024 – International Hackathon',
+      description: 'Clean, high-information poster for 36-hour international hackathon. Minimal white layout with soft gradient accents. Strong emphasis on typography and structured content with central QR code.',
       image: 'https://ik.imagekit.io/2gmny0aig/Portfolio/assets/images/PEC%20Hacks%202024-%20Poster%20(1).webp',
       tags: ['Hackathon', 'Print']
     },
     {
       id: 'd18',
-      title: 'PEC Hacks – National-Level Poster',
+      title: 'PEC Hacks – International-Level Poster',
       description: 'Futuristic promotional poster with deep magenta-to-purple gradient. Glowing particle effects with abstract geometric shapes. Energetic, tech-driven visual language optimized for digital promotion.',
       image: 'https://ik.imagekit.io/2gmny0aig/Portfolio/assets/images/POSTER%20(1).png',
       tags: ['Hackathon', 'Poster']
@@ -412,6 +412,6 @@ const PORTFOLIO = {
     phone: '+971504123644',
     linkedin: 'https://linkedin.com/in/surya-noyal',
     instagram: 'https://instagram.com/',
-    email: 'mailto:noyalsurya@gmail.com'
+    email: 'mailto:suryanoyal@gmail.com'
   }
 };

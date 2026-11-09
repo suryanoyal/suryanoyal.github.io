@@ -283,7 +283,7 @@ function renderContactLinks() {
       <div class="contact-link__icon">✉️</div>
       <div class="contact-link__details">
         <div class="contact-link__label">Direct Email</div>
-        <div class="contact-link__value">noyalsurya@gmail.com</div>
+        <div class="contact-link__value">suryanoyal@gmail.com</div>
       </div>
       <div class="contact-link__arrow">→</div>
     </a>
